@@ -1,31 +1,16 @@
-<html>
-    <html>
-        <head>
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">           <title>Capitana y Gileia</title>
-        </head>
-        <body>
-            <div>
-            <h1><a href="/">El blog de Capitana, Gilda y Leia</a></h1>
-            <p>Hola a todes!</p>
-            <h2>Somos una perra y dos gatitas a las que les gusta jugar</h2>
-            <h3>Contaremos cositas</h3>
-            
+{% extends 'blog/base.html' %}
 
-        </div>
-
-        
-      
+{% block content %}
         {% for post in posts %}
-    <div>
-        <p> publicado: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
 
-     
+{% endblock %}
 
-
-        </body>
-    </html>
+  
